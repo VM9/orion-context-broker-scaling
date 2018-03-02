@@ -1,9 +1,9 @@
 # Orion Context Broker Scaling
-Repository for Orion Context Broker scaling laboratory and tests
+Repository for [Orion Context Broker](https://github.com/telefonicaid/fiware-orion) scaling laboratory and tests
 
 Requiriments
-- Docker
-- Docker compose
+- [Docker](https://www.docker.com/get-docker)
+- [Docker compose](https://docs.docker.com/compose/install/)
 
 Usage:
 - Place  `docker-compose.yml` into folder
@@ -16,4 +16,10 @@ docker-compose up -d
 - Scale orion:
 ```
 docker-compose scale orion=2
+```
+
+- Debug and Log
+
+```
+ docker-compose logs -f
 ```
