@@ -1,0 +1,39 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# #  Usage
+# # docker-compose up -d
+# # docker-compose scale orion=2
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+version: "3.0"
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge
+services:
+  lb:
+    image: 'dockercloud/haproxy:latest'
+    ports:
+      - 1026:80
+    links:
+      - orion
+    networks:
+      - front-tier
+      - back-tier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+  mongo:
+     image: mongo:3.4
+     restart: always
+     command: --nojournal
+     networks:
+       - back-tier
+  orion:
+     image: fiware/orion
+     restart: always
+     links:
+       - "mongo"
+     command: -port 1026 -logDir /var/log/contextBroker -dbhost mongo
+     networks:
+       - front-tier
+       - back-tier
