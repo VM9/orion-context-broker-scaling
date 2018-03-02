@@ -1,4 +1,4 @@
-# orion-context-broker-scaling
+# Orion Context Broker Scaling
 Repository for Orion Context Broker scaling laboratory and tests
 
 Requiriments
