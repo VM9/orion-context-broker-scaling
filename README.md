@@ -23,3 +23,9 @@ docker-compose scale orion=2
 ```
  docker-compose logs -f
 ```
+
+
+Explanation:
+
+The service `ld`  will start a haproxy server that will include all new orion instances to the balancing, it will bind at port 1026, internally `ld` will bind it at port 80.
+More details inside `docker-compose.yml` file.
